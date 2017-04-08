@@ -1,1 +1,2 @@
-# pink
+# Pink.js
+
