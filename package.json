@@ -1,0 +1,22 @@
+{
+  "name": "pink",
+  "version": "0.1.1",
+  "description": "pink Nodejs framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pinkjs/pink.git"
+  },
+  "keywords": [
+    "pink"
+  ],
+  "author": "zhoujun",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pinkjs/pink/issues"
+  },
+  "homepage": "https://github.com/pinkjs/pink#readme"
+}
