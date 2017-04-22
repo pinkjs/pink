@@ -11,4 +11,18 @@
  Pinkjs就是作者在开发过程中积累的经验和一些在项目里使用的认为封装好的方法抽出来组成的框架。
  
  
+ 框架目录结构参考example目录
  
+```$xslt
+ -example
+ |----config
+ |----controller
+ |----model
+ |----router
+ |----service
+ |----mindiware
+ |----app.js    //入口
+```
+
+框架实现功能：
+1. 自动require ,在用koa这种轻量级框架的时候、加一个文件需要自己require。pinkjs在启动app的时候把规定目录里的文件全部自动载入。
