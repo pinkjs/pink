@@ -4,3 +4,4 @@
  * pink.js 的入口文件。
  */
 const pink = require('./src/pink');
+module.exports = pink;

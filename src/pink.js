@@ -4,6 +4,7 @@
  */
 
 const Koa = require('koa');
+const init = require('init');
 
 class Pink extends Koa{
 	/*
@@ -16,3 +17,5 @@ class Pink extends Koa{
 
 
 }
+
+module.exports = Pink;
