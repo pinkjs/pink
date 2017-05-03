@@ -2,23 +2,13 @@
  * Created by zhoujun on 2017/5/2.
  */
 var compose = require('koa-compose');
+const KoaRouter = require('koa-router');
 
-function Router(opts) {
-	if (!(this instanceof Router)) {
-		return new Router(opts);
+class Router{
+	constructor(){
+
 	}
 
-	this.opts = opts || {};
-	this.methods = this.opts.methods || [
-			'HEAD',
-			'OPTIONS',
-			'GET',
-			'PUT',
-			'PATCH',
-			'POST',
-			'DELETE'
-		];
 
-	this.params = {};
-	this.stack = [];
-};
+}
+module.exports = Router;
