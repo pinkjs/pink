@@ -5,4 +5,4 @@ const home = {
 	'GET /gethome' : {controller: 'home.gethome'},
 }
 
-export default {home};
+module.exports =  home;

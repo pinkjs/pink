@@ -6,7 +6,7 @@
  * 响应接口。直接return 出对象即可默认的http状态码200，如异常则new throw http状态码500
  *
  */
-export function gethome( {header,body} ) {
+exports.gethome =  function gethome( {header,body} ) {
 	const a = 1;
 	const b=2;
 
@@ -16,7 +16,4 @@ export function gethome( {header,body} ) {
 		a,
 		b
 	}
-}
-export function getDetail( {body,query} ) {
-	
 }
