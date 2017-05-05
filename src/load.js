@@ -8,23 +8,17 @@ Promise = require('bluebird');
 var readFile = Promise.promisify(require("fs").readFile);
 var readdir = Promise.promisify(require("fs").readdir);
 const Router = require('./router')
-module.exports = Loader;
 
 class Loader{
-	constructor(){
+	constructor(rootPath){
 
-		this.init();
+		Promise.resolve(this.init(rootPath));	//异步加载模块
 	}
-	async init (rootPath,type){
+	async init (rootPath){
 		const rootFileNames = await readdir(rootPath);
-
 		this.controllers =  await this.loadController(rootFileNames,rootPath);
-
-		if(type == 'router'){
-			const routers =  await this.loadRouter(rootFileNames,rootPath);
-			this.parseRouter(routers);
-		}
-
+		const routers =  await this.loadRouter(rootFileNames,rootPath);
+		this.parseRouter(routers);
 
 	}
 
@@ -39,6 +33,7 @@ class Loader{
 
 	parseRouter(routers){
 		let _router = new Router();
+		this.routerMiddleware = _router.routes();
 		routers.forEach((router)=>{
 			for(const key in router){
 				let k = key.split(' ');
@@ -68,6 +63,6 @@ class Loader{
 	}
 }
 
-
+module.exports = Loader;
 
 

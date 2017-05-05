@@ -4,9 +4,9 @@
 var compose = require('koa-compose');
 const KoaRouter = require('koa-router');
 
-class Router{
+class Router extends KoaRouter{
 	constructor(){
-
+		super()
 	}
 
 
