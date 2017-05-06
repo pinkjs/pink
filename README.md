@@ -17,20 +17,24 @@ pink.js的定位就象把自己作为航母（一个web-server实例），业务
 ```js
 const Pink = require('pink'); // pinkjs包
 
-const user = require('user'); // 用户逻辑代码封装的包
+const user = require('user'); // 用户逻辑代码封装的包 建议发布到自己的私有npm服务器管理 
 
 const order = require('order'); // 订单逻辑
 
 const product = require('product'); // 产品逻辑
 
+const db = require('db');   //数据包配置文件
+  
 const server  = new Pink({
-	'/user': user,          //url 第一段为user的路由到user模块
-	'/order': order,
-	'/product': product
+	'/user': user(db),          //url 第一段为user的路由到user模块
+	'/order': order(db),
+	'/product': product(db)
 });
 
 server.listen(3000);
 ```
+
+以上代码可以随意拆，如果想让订单逻辑高可用可以独立拆到一个服务器上。只要实例化一个Pink 注入 order模块即可。
 
  框架目录结构参考example目录
  
