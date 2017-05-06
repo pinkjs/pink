@@ -1,16 +1,37 @@
 # Pink.js
 
- pink.js 是一个在Koa2的基础上深度封装的一个框架。类似阿里的Egg但不同于Egg
- 
- Koa是一个非常优秀的Nodejs框架、其最大的特点是它的洋葱中间件。
- 
- 本框架作者也是一个Koa的重度使用者、使用Koa开发过好几个项目。Koa只是一个基础的框架，一个简单的web项目需要、router、controller、model、service等分层。
- 
- 直接使用Koa则需要自己手动搭建一个开发的目录结构，手动组合一些第三方库。如果数据库采用Mysql则需要安装Mysql模块。简单封装Mysql模块的方法，以便在Koa里调用。
- 
- Pinkjs就是作者在开发过程中积累的经验和一些在项目里使用的认为封装好的方法抽出来组成的框架。
- 
- 
+对于Nodejs服务器端架构的思考，以及作者在开发Nodejs项目的同时遇到的一些问题，整理出了一套Nodejs分布式架构框架Pink.js
+
+# 一、 传统架构遇到的问题
+    
+传统的架构比如使用koa开发一个项目，流程如下：
+1. 部署开发环境，安装koa，安装各种中间件，选择数据库包。如果不使用其他第三方包需要自己写异常处理，session权限验证等。
+2. 随着需求的不但的增加，项目版本的迭代。代码量会越来越庞大。
+3. 最可悲的是这个时候可爱的产品对我们睡哦需求变更。需要重构，这下就懵了。需要对一个庞大的系统进行重构，时间成本高昂。
+4. 对团队的新人很难review庞大代码
+# 二、 Pink.js 的架构设计。
+
+pink.js的定位就象把自己作为航母（一个web-server实例），业务代码封装为npm包作为航母上各式各样的武器。可以随意的拆分自由组合。
+
+部署一套pinkjs Demo
+```js
+const Pink = require('pink'); // pinkjs包
+
+const user = require('user'); // 用户逻辑代码封装的包
+
+const order = require('order'); // 订单逻辑
+
+const product = require('product'); // 产品逻辑
+
+const server  = new Pink({
+	'/user': user,          //url 第一段为user的路由到user模块
+	'/order': order,
+	'/product': product
+});
+
+server.listen(3000);
+```
+
  框架目录结构参考example目录
  
 ```$xslt
