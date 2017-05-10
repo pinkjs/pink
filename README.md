@@ -13,7 +13,8 @@
 
 pink.js的定位就象把自己作为航母（一个web-server实例），业务代码封装为npm包作为航母上各式各样的武器。可以随意的拆分自由组合。
 
-部署一套pinkjs Demo
+# 快速开始
+
 ```js
 const Pink = require('pink'); // pinkjs包
 
@@ -56,7 +57,7 @@ server.listen(3000);
 
 ### pinkjs框架有如下子模块支持：
 
-1. pink-mysql   提供Mysql数据库对象模型  （未完成）
+1. pink-mysql   提供Mysql数据库对象模型  V1.0.0
 2. pink-redis   提供Redis的常用操作    （未完成）
 3. pink-mongo   提供Mongodb的模型（未完成）
 4. pink-request 提供更好的异步网络请求客户端。（未完成）
