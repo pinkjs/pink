@@ -3,8 +3,8 @@
  */
 const Pink = require('../index');
 const app = new Pink({
-	listen: 2345,
-	rootPath: __dirname
+	rootPath: __dirname,
+
 });
 
 app.listen(3456);
