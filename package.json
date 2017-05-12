@@ -20,7 +20,11 @@
   },
   "homepage": "https://github.com/pinkjs/pink#readme",
   "devDependencies": {
-    "eslint": "^3.19.0"
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
+    "eslint": "^3.19.0",
+    "mocha": "^3.3.0",
+    "request": "^2.81.0"
   },
   "dependencies": {
     "bluebird": "^3.5.0",
