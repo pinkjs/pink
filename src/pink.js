@@ -13,8 +13,6 @@ class Pink extends Koa{
 	constructor(object){
 		super();
 		this.rootPath = object.rootPath;
-		this.router = Router;
-		this.listenPort = object.listen;
 		this.request = request;
 	}
 

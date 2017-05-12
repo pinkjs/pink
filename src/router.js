@@ -9,6 +9,5 @@ class Router extends KoaRouter{
 		super()
 	}
 
-
 }
 module.exports = Router;

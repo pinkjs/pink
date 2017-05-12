@@ -13,7 +13,7 @@
 
 pink.js的定位就象把自己作为航母（一个web-server实例），业务代码封装为npm包作为航母上各式各样的武器。可以随意的拆分自由组合。
 
-# 快速开始
+# 三、快速开始
 
 ```js
 const Pink = require('pink'); // pinkjs包
@@ -39,21 +39,6 @@ server.listen(3000);
 
  框架目录结构参考example目录
  
-```$xslt
- -example
- |----config
- |----controller
- |----model
- |----router
- |----service
- |----mindiware
- |----app.js    //入口
-```
-
-框架实现功能：
-1. 自动require ,在用koa这种轻量级框架的时候、加一个文件需要自己require。pinkjs在启动app的时候把规定目录里的文件全部自动载入。
-2. 在接口开发中往往会遇到参数校验，当接口的请求参数过多时候，校验参数的代码过多。pinkjs实现参数校验与业务逻辑分离。自动校验参数
-
 
 ### pinkjs框架有如下子模块支持：
 
