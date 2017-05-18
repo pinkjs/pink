@@ -4,13 +4,12 @@
  */
 
 const request = require('koa/lib/request');
-const uuidV4 = require('uuid/v4')
+const uuidV4 = require('uuid/v4');
 
 
 const pinkRequest = {
 
-
-}
+};
 
 function PinkRequest(){
 	//this.request_id = get (){
@@ -22,4 +21,4 @@ PinkRequest.prototype.constructor = PinkRequest;
 
 //const req = Object.assign(request,pinkRequest);
 //console.log(req);
-module.exports =pinkRequest;
+module.exports = pinkRequest;
