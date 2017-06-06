@@ -24,7 +24,8 @@
     "chai-as-promised": "^6.0.0",
     "eslint": "^3.19.0",
     "mocha": "^3.3.0",
-    "request": "^2.81.0"
+    "request": "^2.81.0",
+    "supertest": "^3.0.0"
   },
   "dependencies": {
     "bluebird": "^3.5.0",
