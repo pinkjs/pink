@@ -24,6 +24,7 @@ module.exports = class Pink extends Koa{
 		this.request = Object.create(request);
 		//this.response = Object.create(response);
 		//console.log(this.request)
+		init(object);
 	}
 
 	/*
