@@ -23,7 +23,7 @@ module.exports = async (object)=>{
 
 	load.controllers = controllerArr;
 
-	let re = Promise.map(routerArr,load.parseRouter.bind(load));
+	Promise.map(routerArr,load.parseRouter.bind(load));
 
 	return function (){
 		return load.router;

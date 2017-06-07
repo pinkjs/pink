@@ -4,6 +4,7 @@
  */
 var compose = require('koa-compose');
 const fs = require('fs');
+const _action = require('./action');
 Promise = require('bluebird');
 var readFile = Promise.promisify(require("fs").readFile);
 var readdir = Promise.promisify(require("fs").readdir);
@@ -36,20 +37,13 @@ class Loader{
 					let controllerArr = router[key]['controller'].split('.');
 					for(let val of this.controllers){
 						if(val[controllerArr[1]]){
-							let controller = val[controllerArr[1]];
-							//console.log(controller)
-							//console.log(path)
-							//console.log(method)
-							this.router.register(path,[method],controller);
+							let action = val[controllerArr[1]];		//方法
+
+							this.router.register(path,[method],	_action(action));
 						}
 					}
 					console.log('路由注册成功')
-					//let controller = this.controllers[controllerArr[0]];
-					//console.log(this.controllers)
-					//console.log(controllerArr)
-					//console.log(controller)
-					//let middleware = controller[controllerArr[1]]
-					//this.use(_router.routes()).use(_router.allowedMethods());
+
 				}catch (e){
 					console.error(e);
 					new Error('路由定义的控制器名称不正确',e);
