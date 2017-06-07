@@ -11,72 +11,54 @@ const Router = require('./router')
 
 class Loader{
 	constructor(rootPath){
-
-		Promise.resolve(this.init(rootPath));	//异步加载模块
-	}
-	async init (rootPath){
-		const rootFileNames = await readdir(rootPath);
-		this.controllers =  await this.loadController(rootFileNames,rootPath);
-		const routers =  await this.loadRouter(rootFileNames,rootPath);
-		this.parseRouter(routers);
-
+		this.rootPath = rootPath;
+		this.rootFileNames = async()=>await readdir(rootPath);
+		this.router = new Router();
 	}
 
-	async loadRouter(rootFileNames,rootPath){
-		if(rootFileNames.includes('routers')){
-			const routers = await readdir(rootPath + '/routers');
+	async loadFilesByDir(dirName){
+		let rootFileNames = await this.rootFileNames();
+		if(rootFileNames.includes(dirName)){
+			const routers = await readdir(this.rootPath + '/' + dirName);
 			return routers.map((router)=>{
-				return require(rootPath + '/routers/'+ router);
+				return require(this.rootPath + '/'+ dirName +'/'+ router);
 			})
 		}
 	}
 
-	parseRouter(routers){
-		let _router = new Router();
-		this.routerMiddleware = _router.routes();
-		routers.forEach((router)=>{
-			for(const key in router){
-				let k = key.split(' ');
-				let method = k[0];
-				let path = k[1];
-				console.log(method)
-				if(['GET','POST','PUT','DELETE'].includes(method)){
-					try{
-						let controllerArr = router[key]['controller'].split('.');
-						for(let val of this.controllers){
-							console.log(val);
-							console.log(controllerArr[1]);
-							if(val[controllerArr[1]]){
-								let controller = val[controllerArr[1]];
-								console.log(controller)
-								console.log(path)
-								console.log(method)
-								_router.register(path,[method],controller);
-							}
+	parseRouter(router){
+		for(const key in router){
+			let k = key.split(' ');
+			let method = k[0];
+			let path = k[1];
+			if(['GET','POST','PUT','DELETE'].includes(method)){
+				try{
+					let controllerArr = router[key]['controller'].split('.');
+					for(let val of this.controllers){
+						if(val[controllerArr[1]]){
+							let controller = val[controllerArr[1]];
+							//console.log(controller)
+							//console.log(path)
+							//console.log(method)
+							this.router.register(path,[method],controller);
 						}
-						//let controller = this.controllers[controllerArr[0]];
-						//console.log(this.controllers)
-						//console.log(controllerArr)
-						//console.log(controller)
-						//let middleware = controller[controllerArr[1]]
-
-					}catch (e){
-						console.error(e);
-						new Error('路由定义的控制器名称不正确',e);
 					}
+					console.log('路由注册成功')
+					//let controller = this.controllers[controllerArr[0]];
+					//console.log(this.controllers)
+					//console.log(controllerArr)
+					//console.log(controller)
+					//let middleware = controller[controllerArr[1]]
+					//this.use(_router.routes()).use(_router.allowedMethods());
+				}catch (e){
+					console.error(e);
+					new Error('路由定义的控制器名称不正确',e);
 				}
 			}
-		})
+		}
+
 	}
 
-	async loadController( rootFileNames,rootPath ) {
-		if(rootFileNames.includes('controller')){
-			const routers = await readdir(rootPath + '/controller');
-			return routers.map((router)=>{
-				return require(rootPath + '/controller/'+ router);
-			})
-		}
-	}
 }
 
 module.exports = Loader;

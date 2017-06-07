@@ -4,6 +4,7 @@
  */
 const Koa = require('koa');
 const init = require('./init');
+global.Promise = require('bluebird');
 //const request = require('./base/request');
 //const response = require('./base/response');
 //const context = require('./base/context');
@@ -13,7 +14,7 @@ module.exports = class Pink extends Koa{
 	* pinkjs的构造函数
 	* */
 	constructor(object){
-
+		super();
 		//this.rootPath = object.rootPath;
 		//this.proxy = false;
 		//this.middleware = [];
@@ -23,8 +24,11 @@ module.exports = class Pink extends Koa{
 		//this.request = Object.create(request);
 		//this.response = Object.create(response);
 		//console.log(this.request)
-		init(object);
-		super();
+		Promise.resolve(init(object)).then((fn)=>{
+			let router = fn();
+			this.use(router.routes()).use(router.allowedMethods())
+		});
+
 	}
 
 	/*
