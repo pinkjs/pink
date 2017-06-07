@@ -39,13 +39,29 @@ class Loader{
 				let k = key.split(' ');
 				let method = k[0];
 				let path = k[1];
+				console.log(method)
 				if(['GET','POST','PUT','DELETE'].includes(method)){
 					try{
 						let controllerArr = router[key]['controller'].split('.');
-						let controller = this.controllers[controllerArr[0]];
-						let middleware = controller[controllerArr[1]]
-						_router.register(path,method,middleware);
+						for(let val of this.controllers){
+							console.log(val);
+							console.log(controllerArr[1]);
+							if(val[controllerArr[1]]){
+								let controller = val[controllerArr[1]];
+								console.log(controller)
+								console.log(path)
+								console.log(method)
+								_router.register(path,[method],controller);
+							}
+						}
+						//let controller = this.controllers[controllerArr[0]];
+						//console.log(this.controllers)
+						//console.log(controllerArr)
+						//console.log(controller)
+						//let middleware = controller[controllerArr[1]]
+
 					}catch (e){
+						console.error(e);
 						new Error('路由定义的控制器名称不正确',e);
 					}
 				}

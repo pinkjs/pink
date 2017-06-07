@@ -9,11 +9,11 @@ const app = new Pink({
 
 });
 
-app.use(async (ctx,next)=>{
-	console.log(ctx.method);
-	console.log(ctx.request_id);
-	ctx.body = ctx.method;
-	await next();
-})
+//app.use(async (ctx,next)=>{
+//	console.log(ctx.method);
+//	console.log(ctx.request_id);
+//	ctx.body = ctx.method;
+//	await next();
+//})
 
 app.listen(3456);

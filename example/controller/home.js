@@ -9,7 +9,7 @@
 exports.gethome =  function gethome( {header,body} ) {
 	const a = 1;
 	const b=2;
-
+	console.log(111)
 	//业务逻辑
 
 	return {
