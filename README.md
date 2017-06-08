@@ -11,31 +11,20 @@
 4. 对团队的新人很难review庞大代码
 # 二、 Pink.js 的架构设计。
 
-pink.js的定位就象把自己作为航母（一个web-server实例），业务代码封装为npm包作为航母上各式各样的武器。可以随意的拆分自由组合。
+pink.js是为微服务设计的框架。
 
 # 三、快速开始
 
 ```js
-const Pink = require('pink'); // pinkjs包
+const Pink = require('../index');
 
-const user = require('user'); // 用户逻辑代码封装的包 建议发布到自己的私有npm服务器管理 
+const app = new Pink({
+	rootPath: __dirname,
 
-const order = require('order'); // 订单逻辑
-
-const product = require('product'); // 产品逻辑
-
-const db = require('db');   //数据包配置文件
-  
-const server  = new Pink({
-	'/user': user(db),          //url 第一段为user的路由到user模块
-	'/order': order(db),
-	'/product': product(db)
 });
 
-server.listen(3000);
+app.listen(3456);
 ```
-
-以上代码可以随意拆，如果想让订单逻辑高可用可以独立拆到一个服务器上。只要实例化一个Pink 注入 order模块即可。
 
  框架目录结构参考example目录
  
