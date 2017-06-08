@@ -8,9 +8,7 @@ module.exports = async (object)=>{
 		console.error('no rootPath');
 		throw '没有指定rootpath'
 	}
-
-
-
+	
 	let load = new Loader(object.rootPath);	//实例化加载器
 	/*
 	* 加载顺序，先加载Model再加载Controller，再加载Router，如需要改变请重写此函数。

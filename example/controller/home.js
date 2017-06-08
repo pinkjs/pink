@@ -9,14 +9,20 @@
 exports.gethome = async  function gethome( {header,body,request,query} ) {
 	const a = 1;
 	const b=2;
-	console.log(111)
-	console.log(header)
-	console.log(request)
-	console.log(query);
+	//console.log(111)
+	//console.log(header)
+	//console.log(request)
+	//console.log(query);
 	//业务逻辑
 
 	return {
 		a,
 		b
 	}
+}
+exports.home = async function ({header,body,request,query}  ) {
+
+	console.log(request);
+
+
 }

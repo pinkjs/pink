@@ -3,6 +3,7 @@
  */
 const home = {
 	'GET /gethome' : {controller: 'home.gethome'},
+	'POST /home' : {controller: 'home.home'},
 }
 
 module.exports =  home;

@@ -38,7 +38,6 @@ class Loader{
 					for(let val of this.controllers){
 						if(val[controllerArr[1]]){
 							let action = val[controllerArr[1]];		//方法
-
 							this.router.register(path,[method],	_action(action));
 						}
 					}
