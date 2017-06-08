@@ -3,6 +3,7 @@
  * email :zhoujun247@gmail.com
  */
 const Koa = require('koa');
+const bodyparse = require('koa-bodyparser');
 const init = require('./init');
 global.Promise = require('bluebird');
 //const request = require('./base/request');
@@ -24,9 +25,12 @@ module.exports = class Pink extends Koa{
 		//this.request = Object.create(request);
 		//this.response = Object.create(response);
 		//console.log(this.request)
+
+		//this.use(bodyparse());
 		Promise.resolve(init(object)).then((fn)=>{
-			let router = fn();
-			this.use(router.routes()).use(router.allowedMethods())
+			this.router = fn;
+			this.router();
+
 		});
 
 	}

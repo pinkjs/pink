@@ -3,13 +3,15 @@
  * pinkjs框架的启动脚本
  */
 const Loader = require('./load');
-module.exports = async (object)=>{
+const Router = require('./router')
+module.exports = async (object,pink)=>{
 	if(object.rootPath == undefined){
 		console.error('no rootPath');
 		throw '没有指定rootpath'
 	}
-	
-	let load = new Loader(object.rootPath);	//实例化加载器
+
+	const load = new Loader(object.rootPath);	//实例化加载器
+	const router = new Router();						//实例化路由
 	/*
 	* 加载顺序，先加载Model再加载Controller，再加载Router，如需要改变请重写此函数。
 	*
@@ -20,10 +22,11 @@ module.exports = async (object)=>{
 	let routerArr = await load.loadFilesByDir('routers')
 
 	load.controllers = controllerArr;
-
-	Promise.map(routerArr,load.parseRouter.bind(load));
+	let parseRouter = router.parseRouter(controllerArr);
+	Promise.map(routerArr,parseRouter);
 
 	return function (){
-		return load.router;
+		this.use(router.routes()).use(router.allowedMethods())
+
 	}
 }

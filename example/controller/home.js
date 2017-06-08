@@ -22,7 +22,7 @@ exports.gethome = async  function gethome( {header,body,request,query} ) {
 }
 exports.home = async function ({header,body,request,query}  ) {
 
-	console.log(request);
+	console.log(request.body);
 
 
 }
