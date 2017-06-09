@@ -16,6 +16,5 @@ module.exports = function ( action ) {
 			ctx.status = 500;
 		}
 
-
 	}
 }
