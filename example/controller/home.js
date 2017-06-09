@@ -23,6 +23,9 @@ exports.gethome = async  function gethome( {header,body,request,query} ) {
 exports.home = async function ({header,body,request,query}  ) {
 
 	console.log(request.body);
-
+	return {
+		a:	111,
+		b:444
+	}
 
 }

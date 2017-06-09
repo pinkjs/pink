@@ -15,25 +15,25 @@ class Router extends KoaRouter{
 				let k = key.split(' ');
 				let method = k[0];
 				let path = k[1];
-				let routermiddlewareArr = []
+				let routerMiddlewareArr = [];
 				if(['GET','POST','PUT','DELETE'].includes(method)){
 					if(method !='GET'){
-						routermiddlewareArr.push(bodyparse());
+						routerMiddlewareArr.push(bodyparse());
 					}
 					try{
 						let controllerArr = router[key]['controller'].split('.');
 						if(router[key]['middleware'] ){
 							for(let val of middlewares){
 								if(val.name == router[key]['middleware'] ){
-									routermiddlewareArr.push(val);
+									routerMiddlewareArr.push(val);
 								}
 							}
 						}
 						for(let val of controllers){
 							if(val[controllerArr[1]]){
 								let action = val[controllerArr[1]];		//方法
-								routermiddlewareArr.push(_action(action));
-								this.register(path,[method],	compose(routermiddlewareArr));
+								routerMiddlewareArr.push(_action(action));
+								this.register(path,[method],	compose(routerMiddlewareArr));
 							}
 						}
 						console.log(`自动加载路由${path}成功`);

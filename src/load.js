@@ -19,9 +19,9 @@ class Loader{
 	async loadFilesByDir(dirName){
 		let rootFileNames = await this.rootFileNames();
 		if(rootFileNames.includes(dirName)){
-			const routers = await readdir(this.rootPath + '/' + dirName);
-			return routers.map((router)=>{
-				return require(this.rootPath + '/'+ dirName +'/'+ router);
+			const files = await readdir(this.rootPath + '/' + dirName);
+			return files.map((file)=>{
+				return require(this.rootPath + '/'+ dirName +'/'+ file);
 			})
 		}
 	}
