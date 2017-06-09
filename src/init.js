@@ -21,8 +21,10 @@ module.exports = async (object,pink)=>{
 
 	let routerArr = await load.loadFilesByDir('routers')
 
+	let middlewareArr = await load.loadFilesByDir('middleware')
+
 	load.controllers = controllerArr;
-	let parseRouter = router.parseRouter(controllerArr);
+	let parseRouter = router.parseRouter(controllerArr,middlewareArr);
 	Promise.map(routerArr,parseRouter);
 
 	return function (){

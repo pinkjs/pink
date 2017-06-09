@@ -9,7 +9,7 @@ Promise = require('bluebird');
 var readFile = Promise.promisify(require("fs").readFile);
 var readdir = Promise.promisify(require("fs").readdir);
 
-
+//加载器
 class Loader{
 	constructor(rootPath){
 		this.rootPath = rootPath;
@@ -26,30 +26,7 @@ class Loader{
 		}
 	}
 
-	//parseRouter(router){
-	//	for(const key in router){
-	//		let k = key.split(' ');
-	//		let method = k[0];
-	//		let path = k[1];
-	//		if(['GET','POST','PUT','DELETE'].includes(method)){
-	//			try{
-	//				let controllerArr = router[key]['controller'].split('.');
-	//				for(let val of this.controllers){
-	//					if(val[controllerArr[1]]){
-	//						let action = val[controllerArr[1]];		//方法
-	//						this.router.register(path,[method],	_action(action));
-	//					}
-	//				}
-	//				console.log('路由注册成功')
-	//
-	//			}catch (e){
-	//				console.error(e);
-	//				new Error('路由定义的控制器名称不正确',e);
-	//			}
-	//		}
-	//	}
-	//
-	//}
+
 
 }
 
