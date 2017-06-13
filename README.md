@@ -10,6 +10,40 @@
 3. 最可悲的是这个时候可爱的产品对我们随着需求变更。需要重构，这下就懵了。需要对一个庞大的系统进行重构，时间成本高昂。
 4. 对团队的新人很难review庞大代码
 # 二、 Pink.js 的架构设计。
+TDD方法
+
+controller
+```js
+exports.gethome = async  function gethome( {header,body,request,query} ) {
+	const a = 1;
+	const b=2;
+	if(header.session_id == '123456'){
+        return {
+            result: true,
+            b
+        }
+	}
+	
+}
+```
+
+test
+
+```js
+const home = require('../controller/home');
+
+var expect = require('chai').expect;
+
+describe( 'home',function (  ) {
+	it('gethome',function (  ) {
+		return home.gethome({ header:{session_id: '123456'}}).then((result)=>{
+			expect(result).to.have.property('result');
+		});
+	});
+
+} )
+
+```
 
 pink.js是为微服务设计的框架。
 
