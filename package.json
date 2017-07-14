@@ -1,6 +1,6 @@
 {
   "name": "pinkjs",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "pink Nodejs framework",
   "main": "index.js",
   "scripts": {

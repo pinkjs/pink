@@ -13,6 +13,7 @@ module.exports = function ( action ) {
 			}
 			ctx.body = resBody;
 		}catch (e){
+			console.error(e);
 			ctx.status = 500;
 			ctx.body = {
 				result:false,
