@@ -7,5 +7,8 @@ const app = new Pink({
 	NODE_ENV: process.NODE_ENV || 'development',
 });
 
+app.load('controller','./controlller')
+app.load('model','./model');
+app.load('router','./router');
 
 app.listen(3456);

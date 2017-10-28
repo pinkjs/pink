@@ -1,5 +1,13 @@
 /**
  * Created by zhoujun on 2017/4/22.
+ *
+ *
+ * 0.2 version
+ *module.exports= {
+ * 'GET /home' : {action: 'home.gethome',middleware:['session','bodyparse','...']},
+ *
+ * }
+ *
  */
 const home = {
 	/*
