@@ -6,7 +6,7 @@
  * 响应接口。直接return 出对象即可默认的http状态码200，如异常则new throw http状态码500
  *
  */
-exports.gethome = async  function gethome( {header,body,request,query} ) {
+exports.gethome = async  function gethome( {header,body,request,query},next ) {
 	const a = 1;
 	const b=2;
 	//console.log(111)
@@ -14,7 +14,7 @@ exports.gethome = async  function gethome( {header,body,request,query} ) {
 	//console.log(request)
 	//console.log(query);
 	//业务逻辑
-
+		await next();
 	return {
 		a,
 		b

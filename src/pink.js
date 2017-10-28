@@ -29,10 +29,15 @@ module.exports = class Pink extends Emitter{
 		//	this.router();
 		//
 		//});
+		this.loads = [];
 
 	}
 
 	load(name,path){
+		this.loads.push({name: path});
+	}
+
+	start(){
 
 	}
 

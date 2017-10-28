@@ -10,5 +10,6 @@ const app = new Pink({
 app.load('controller','./controlller')
 app.load('model','./model');
 app.load('router','./router');
+app.load('middleware','./middleware');
 
 app.listen(3456);
